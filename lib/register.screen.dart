@@ -14,6 +14,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final displayNameController = TextEditingController();
+  final occupationController = TextEditingController();
   String gender;
 
   ///
@@ -92,6 +93,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   setState(() => gender = str);
                 },
               ),
+              SizedBox(height: 16),
+              TextFormField(
+                key: ValueKey('occupation'),
+                controller: occupationController,
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(labelText: "Occupation"),
+              ),
               SizedBox(height: 32),
               RaisedButton(
                 child: loading ? CircularProgressIndicator() : Text("Submit"),
@@ -103,15 +111,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       'password': passwordController.text,
                       'displayName': displayNameController.text,
                       'gender': gender,
-                      'any': 'you can add any extra data',
+                      'occupation': occupationController.text,
                     }, meta: {
                       'public': {
                         'public_data': true,
                         'any_data': true,
                       },
-                      // 'custom': {
-                      //   'should_be': 'error',
-                      // }
+                      'tokens': {
+                        'my_push_token_1': true,
+                      }
                     });
                     Get.toNamed('home');
                   } catch (e) {

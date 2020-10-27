@@ -16,7 +16,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final displayNameController =
       TextEditingController(text: ff.user.displayName);
 
-  String gender = ff.data?.gender;
+  final occupationController =
+      TextEditingController(text: ff.data['occupation']);
+
+  String gender = ff.data['gender'];
   DateTime birthday = DateTime.now();
 
   bool loading = false;
@@ -60,6 +63,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 onChanged: (str) {
                   setState(() => gender = str);
                 },
+              ),
+              SizedBox(height: 16),
+              TextFormField(
+                key: ValueKey('occupation'),
+                controller: occupationController,
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(labelText: "Occupation"),
               ),
               SizedBox(height: 30),
               RaisedButton(

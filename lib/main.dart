@@ -1,16 +1,14 @@
+import 'package:ff2/forum.screen.dart';
 import 'package:ff2/home.screen.dart';
 import 'package:ff2/login.screen.dart';
 import 'package:ff2/profile.screen.dart';
 import 'package:ff2/register.screen.dart';
-import 'package:fireflutter/fireflutter.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:get/route_manager.dart';
 import './global.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await ff.init();
   runApp(MyApp());
 }
 
@@ -22,7 +20,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   void initState() {
-    ff = FireFlutter();
     super.initState();
   }
 
@@ -36,6 +33,7 @@ class _MyAppState extends State<MyApp> {
         GetPage(name: 'login', page: () => LoginScreen()),
         GetPage(name: 'register', page: () => RegisterScreen()),
         GetPage(name: 'profile', page: () => ProfileScreen()),
+        GetPage(name: 'forum', page: () => ForumScreen())
       ],
     );
   }
